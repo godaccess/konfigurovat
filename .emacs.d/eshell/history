@@ -1,0 +1,32 @@
+./blah
+buu
+brew 
+brew install sbcl
+calc
+calc
+units -v1 "10 dollars" "poundsterling"
+units -v1 "10 dollars" "poundsterling"
+units -v1 "10 dollars" "poundsterling"
+units -v1 "10 dollars" "poundsterling"   
+units -v1 "10 dollars" "pound"   
+units -v1 "10 dollars" "pounds" 
+ps aux | grep Dropbox
+kill -p 2058
+kill -p 2054
+kill -p 2053
+cd Movies/boardwalk-empire/
+ls
+cd Boardwalk\ Empire\ Season\ 4\ Complete\ HDTVRip\ x264\ \[DexzAery\ \&\ VectoR\]/
+ls
+clear
+cd
+git clone http://github.com/hayamiz/twittering-mode.git
+ls
+mv twittering-mode/ .emacs.d/
+cd .emacs.d
+ls
+mkdir site-lisp
+mv twittering-mode/ site-lisp/
+ls site-lisp/
+cd
+brew install spim

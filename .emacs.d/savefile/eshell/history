@@ -1,0 +1,31 @@
+ls
+clear
+./fahrfor
+./fahrfor
+ls
+cat *.c
+./fahrfor
+make fahrfor
+rm fahrfor
+make fahrfor
+./fahrfor
+ls
+cd c
+ls
+make ex5
+./ex5
+cd examples/
+ls
+make symbolic
+./symbolic 
+make inputoutput
+./inputoutput 
+ls
+make ex13
+ls
+rm blah ello 
+open blah.c
+ls
+./ex13-2
+./ex13-2
+cle

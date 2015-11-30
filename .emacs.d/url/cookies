@@ -1,0 +1,15 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '((".ycombinator.com"
+  [url-cookie "__cfduid" "d72e811eac308d9e0ff1d489ecb577fd01417121039" "27 Nov 15 20:43:59 [GMT]" "/" ".ycombinator.com" nil]
+  [url-cookie "HttpOnly" nil "27 Nov 15 20:43:59 [GMT]" "/" ".ycombinator.com" nil]))
+)
+(setq url-cookie-secure-storage
+ 'nil)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:

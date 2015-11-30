@@ -1,0 +1,348 @@
+source ~/.mutt/gpg.rc
+
+set ssl_verify_host = no
+set ssl_verify_dates = no
+
+# Send info
+
+set from = "user@address"
+set realname = "name"
+
+set ssl_starttls = yes
+
+# Settings for IMAP
+# Activate TLS if available on the server
+
+set ssl_starttls=yes
+
+# Always use SSL when connecting to a server
+
+set ssl_force_tls=yes
+ 
+# Don't wait to enter mailbox manually 
+
+unset imap_passive        
+
+# Automatically poll subscribed mailboxes for new mail (new in 1.5.11)
+
+set imap_check_subscribed
+
+# Reduce polling frequency to a sane level
+
+set mail_check = 60
+
+# And poll the current mailbox more often (not needed with IDLE in post 1.5.11)
+
+set timeout = 10
+
+# Keep a cache of headers for faster loading (1.5.9+?)
+
+set header_cache=~/.hcache
+
+# Display download progress every 5K
+
+set net_inc = 5
+
+# Go!
+
+set imap_user = "user@host"
+set imap_pass = "password"
+set smtp_authenticators = 'gssapi:login'
+set imap_authenticators = 'gssapi:login'
+set use_from = "yes"
+set envelope_from ="yes"
+set reverse_name
+bind index G imap-fetch-mail
+
+set folder = "imaps://user@host@host:/587"
+set spoolfile = "+INBOX"
+set record="+Sent"
+set postponed="+Postponed"
+mailboxes =INBOX
+
+# Settings for SMTP
+set smtp_url = smtp://user@host@host:587/
+set smtp_pass = "password"
+
+# Don't display help
+set help="no"
+
+# Use tildes on empty lines
+set tilde="yes"
+
+# Index format
+set index_format="%{%b %d}  %Z  %-25.25F  (%?l?%4l&%4c?)  %s%?E?%> %e/%E ?"
+
+# Update imap more often
+set imap_idle = yes
+set imap_keepalive = 300
+
+# Immediately go to message edit when replying
+set fast_reply = yes
+
+# Mail check interval
+set mail_check = 30
+set timeout = 30
+
+# Cache Files
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
+
+# Alias file
+set alias_file=~/.mutt/aliases
+source ~/.mutt/aliases
+
+# Mailing lists
+source ~/.mutt/lists
+
+set send_charset="utf-8"
+
+bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
+
+# Vi binds
+bind index y imap-fetch-mail
+bind index l display-message
+bind index G bottom-page
+bind pager h exit
+
+# Easy create alias
+bind index A create-alias
+bind pager A create-alias
+
+# Line movement binds
+bind pager < previous-line
+bind pager > next-line
+
+# Reload inbox
+macro index I "c!\n" "Reload/Goto Inbox"
+macro pager I "c!\n" "Reload/Goto Inbox"
+
+# Call urlview
+macro pager \Cb ":set pipe_decode\n|urlview\n:unset pipe_decode\n"\
+                "call urlview to extract URLs out of a message"
+
+# Mark all as read
+macro index \Cr "<tag-pattern>~N\n<tag-prefix><clear-flag>N" \
+                "Mark all new messages as read"
+
+# Mark message as spam
+macro index S "<copy-message>=Spam\ny<delete-message><sync-mailbox>y" \
+              "Mark a message as spam"
+
+# Split Window
+set pager_index_lines=15
+
+# Show only plain text
+alternative_order text/plain text/html text
+
+# Convert html to text
+set implicit_autoview
+auto_view text/html application/x-pgp-message
+
+# Set default sort
+set sort = 'threads'
+set sort_aux = 'last-date-received'
+
+set edit_headers=yes
+unmy_hdr *
+unset use_domain
+unset user_agent
+
+# Editor
+set editor="emacsclient -a \"\" -t"
+
+# Signature
+set signature="cat ~/.signature"
+
+# Show only interesting headers
+ignore *
+unignore From To Cc Subject Date Reply-To Organization X-Mailer User-Agent
+unignore X-Spam-Flag X-Spam-Score
+
+# Don't ask to move
+set move = no
+
+# Don't beep
+set beep = no
+
+# Palette for use with the Linux console.  Black background.
+
+color hdrdefault blue black
+color quoted green black
+color signature blue black
+color attachment red black
+color message brightred black
+color error brightred black
+color indicator black red
+color status brightgreen black
+color tree white black
+color normal white black
+color markers red black
+color search white black
+color tilde brightmagenta black
+color index green black ~F
+color index red black "~N|~O"
+
+# color body brightwhite black '\*+[^*]+\*+'
+# color body brightwhite black '_+[^_]+_+'
+
+
+## Colours for items in the index                                                                                                                                         
+color index brightcyan black ~N
+color index brightred black ~O
+color index brightyellow black ~F
+color index black green ~T
+color index brightred black ~D
+mono index bold ~N
+mono index bold ~F
+mono index bold ~T
+mono index bold ~D
+
+## Highlights inside the body of a message.                                                                                                                               
+
+## URLs                                                                                                                                                                    
+color body brightgreen black "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+color body brightgreen black "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono body bold "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+mono body bold "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+## Email addresses.                                                                                                                                                       
+color body brightgreen black "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+## Header                                                                                                                                                                 
+color header green black "^from:"
+color header green black "^to:"
+color header green black "^cc:"
+color header green black "^date:"
+color header yellow black "^newsgroups:"
+color header yellow black "^reply-to:"
+color header brightcyan black "^subject:"
+color header red black "^x-spam-rule:"
+color header green black "^x-mailer:"
+color header yellow black "^message-id:"
+color header yellow black "^Organization:"
+color header yellow black "^Organisation:"
+color header yellow black "^User-Agent:"
+color header yellow black "^message-id: .*pine"
+color header yellow black "^X-Fnord:"
+color header yellow black "^X-WebTV-Stationery:"
+
+color header red black "^x-spam-rule:"
+color header green black "^x-mailer:"
+color header yellow black "^message-id:"
+color header yellow black "^Organization:"
+color header yellow black "^Organisation:"
+color header yellow black "^User-Agent:"
+color header yellow black "^message-id: .*pine"
+color header yellow black "^X-Fnord:"
+color header yellow black "^X-WebTV-Stationery:"
+color header yellow black "^X-Message-Flag:"
+color header yellow black "^X-Spam-Status:"
+color header yellow black "^X-SpamProbe:"
+color header red black "^X-SpamProbe: SPAM"
+
+## Coloring quoted text - coloring the first 7 levels:                                                                                                                    
+color quoted cyan black
+color quoted1 yellow black
+color quoted2 red black
+color quoted3 green black
+color quoted4 cyan black
+color quoted5 yellow black
+color quoted6 red black
+color quoted7 green black
+
+## Default color definitions                                                                                                                                              
+#color hdrdefault white green                                                                                                                                             
+color signature brightmagenta black
+color indicator black cyan
+color attachment black green
+color error red black
+color message white black
+color search brightwhite magenta
+color status green black
+color tree green black
+color normal white black
+color tilde green black
+color bold brightyellow black
+#color underline magenta black            
+color markers brightcyan black
+
+## Colour definitions when on a mono screen    
+mono bold bold
+mono underline underline
+mono indicator reverse
+
+set date_format="%y-%m-%d %T"
+set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
+
+## From field gets 30% of remaining space, Subject gets 70%.
+## Remaining space is the total width minus the other fields (35), minus the sidebar (24)
+set my_col_from = `echo $((30 * ($(tput cols)-35-24) / 100))`
+set my_col_subject = `echo $((70 * ($(tput cols)-35-24) / 100))`
+
+# include my headers when composing
+set hdrs
+
+# let me edit headers when composing
+set edit_headers
+
+# mutt should include this by default
+my_hdr X-Mailer: `mutt -v |head -1`
+my_hdr X-Editor: `vim --version |head -1 |cut -f -5 -d ' '`
+my_hdr X-Operating-System: `uname -rs`
+my_hdr X-PGP-Key: `gpg --list-keys $USER |head -1 |cut -c 13-20`
+my_hdr X-PGP-Fingerprint: `gpg --fingerprint $USER |head -2 |tail -1 |cut -c 25-`
+my_hdr X-Priority: 3
+my_hdr Importance: Normal
+my_hdr Organization:
+my_hdr Disposition-Notification-To:
+my_hdr Comments:
+## This header only appears to MS Outlook users
+my_hdr X-Message-Flag: WARNING!! Outlook sucks
+
+# Karl Marx
+#my_hdr X-Face: %+SgKfmfSoa|4i33Un=;j($H:\^~BraJ@v2Mp&i50Xs2Mkz)9{6KC>#:&A-9[<B/<5wH5ggZ6&Bth#S|Kcu?4(h~#-uwgGNN45Q;y=UvO=e^?fJsN\pg)sUg6Z(b>X#B'==9KN#76O(z/*.eK:nHdZirwzsbsZ6~uNFiJ)[%kO<80WH)6{jOv7zsV/mz2=f?;@httbX"|/duzZ5Xyhj
+
+# Hacker
+#my_hdr Face: iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAD1BMVEWiiLm7sO0fCQwhHlN9VUsyaMdcAAACfklEQVQ4T02SwRXjOAxDKcoFCFEKkAEXIJEpwLHTf01z8MzbxYEH/gceABqXk+RJfu77JwOSImnqZEQEJdzJE+0VCtIm+QtS6TlschR0SaQ5qcgQyuqpTKAFgzRec65VSikNp8cErisiaCTzbACAluhf4HU8DpLCo45WgM9Q6AFZAADPhBT/ABf+U4lPpGj+PwsANCiqRNtIkh2APcfawZRoK0iKCygFBQ0I+S1aOkml0NAAFJQj6iHaeJHq1IF/IOkHaZ+NPHxFfssDUOXhtLswJNTMN1BQCnImk7YVikLHWWxhAbg2adBs0YOrF6zaAKCc4TFoc/kvqHLCCgoKiufkoDnGnmS8S2/4ogDOyUFr27mL1Nh6e2LM0DVo323sIveuv0k2UsdOO8vYkzwyn/1NcjBp2eYukhxWAPSzMl2VVsu2i6RO+A6MUGQ9FFZWPgFHfr28f7pxMxh27ax/W3ylYlaU1ycYluflJLk3QKx9P9/jiJBxfZ4OE0XhXMX8pSqjBTM44jD0bEcaet6b7LQrqBjButAQfs1+6yX77J6SyLG230Ij+X3tlHFO6dyC+Xqexcnypox1iZ9yffI6+CqApyJTtvmMjJOdTnECkRFZL4sYkeI+ZXwfKqAH1W/zHFccV111bJkFjR5kHeZxuI4xlHd+W65On8Ft2OSI9FFLrrED8HTe2mRZR0R0zu/SAhB5UbnJZs6kZtwtK9CNn2BmpfFcwRH0++4t1DmYMSqNtGSn3kPDWV48JZnSyHfqrseZdTdA2qT0CKP8GmLcLBN4S3dqkWF1p+8KrV+tm3VOZUwq7agfVgXHcXuB6+b9gFnJ35XDOecXnjVCuqU/Pp+MRDFGXIgAAAAASUVORK5CYII=
+my_hdr X-Face: 0@}wy6e6qTMoAk'w7oBNgiIM!Gc0_OZZ,qA>YUnF\\8WRCuR\;)m]Z]Z\\LGf9^bec\`Ov\$PWhaC\\_Dz%BPZA4~<USY<+yB0GKU7r[)cf\`I%m5ZES%]_J3g7"vdzFG&a4-j|W72?0snlOf(NWwxHQ%>0->nl{8J_3,5z&EM{Fw\$d!:^\#W[\\\#"WxI]lOwsL0.j_WrCT&5\$XV{QE\#?jGcQIg"Fk5)?_80]ofQjGp]*z4^<\;w,dd\$3j:?FDCRXL\#&4,17gir(i:&L\#nz3mF%\`F_Wn<PsE:/_,Z@U@~\$fJ
+
+# header display order
+hdr_order From Date: From: To: Cc: Bcc: Subject:
+
+# draconian header filter
+ignore *
+
+# important headers
+unignore From: Date Subject To Cc Bcc Reply-To \
+	Sender X-Sender Message-ID
+
+# other useful headers
+unignore Mailing-List	List-Id	Precedence	Approved-By \
+	Organization \
+	X-Confirm-Reading-To	Disposition-Notification-To \
+	Comments \
+	X-Priority	Importance \
+	X-Mailer	User-Agent	X-Editor	X-Operating-System \
+	X-PGP-Key	X-PGP-Fingerprint \
+	Face X-Face \
+	X-Bogosity
+
+# lax header filter
+#unignore *
+#unignore Content-Length Lines
+#ignore Delivered-To In-Reply-To
+# uwrf extra headers
+#ignore X-Sieve X-Greylist X-Scanned-By X-Spam-Score
+## uwrf Barracuda spam firewall headers
+#ignore X-ASG-Orig-Subj X-ASG-Debug-ID X-Barracuda-Connect X-Barracuda-Start-Time X-Barracuda-Spam-Score X-Barracuda-Spam-Status X-Barracuda-Spam-Report X-Barracuda-URL X-Barracuda-Virus-Scanned
+# google groups extra headers
+#ignore X-Google-Loop List-Id List-Post List-Help List-Unsubscribe List-Subscribe List-Owner List-Archive X-Apparently-To X-Google-Sender-Auth
+# gmail extra headers
+#ignore DomainKey-Status DKIM-Signature DomainKey-Signature
+# comcast extra headers
+#ignore X-Authority-Analysis Authentication-Results
+# random mailer extra headers
+#ignore X-Authenticated-Sender X-Umn-Remote-Mta X-Umn-Report-As-Spam Thread-Index X-MimeOLE X-YMail-OSG X-Return-Path-Hint X-Roving-ID X-Lumos-SenderID X-Roving-CampaignId X-Roving-StreamId X-IzyMail
+

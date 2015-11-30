@@ -1,0 +1,21 @@
+;;; -*- coding: utf-8 -*-
+(("/Users/user/.emacs.d/init.el" . 5523)
+ ("/Users/user/.emacs.d/savefile/recentf" . 586)
+ ("/Users/user/.emacs.d/elpa/evil-20141201.1332/evil-autoloads.el" . 1300)
+ ("/Users/user/Work/lx0/src/libre/getc.c" . 426)
+ ("/Users/user/work/code/c/exercises/ex13-2.c" . 643)
+ ("/Users/user/.emacs.d/elpa/project-explorer-20141102.1625/project-explorer-autoloads.el" . 438)
+ ("/Users/user/.emacs.d/elpa/es-lib-20141111.1030/es-lib-autoloads.el" . 2550)
+ ("/Users/user/.emacs.d/elpa/es-windows-20140211.104/es-windows-autoloads.el" . 1112)
+ ("/Users/user/"
+	(dired-filename . "/Users/user/Work"))
+ ("/Users/user/Work/"
+	(dired-filename . "/Users/user/Work/linux-2.4.18.tar"))
+ ("/Users/user/.emacs.d/elpa/rcirc-color-20140131.656/rcirc-color-autoloads.el" . 239)
+ ("/Users/user/.emacs.d/elpa/sublimity-20140831.2216/sublimity-autoloads.el" . 1095)
+ ("/Users/user/.emacs.d/elpa/tabbar-20141109.143/tabbar-autoloads.el" . 5290)
+ ("/Users/user/.emacs.d/elpa/async-20141001.151/async-autoloads.el" . 2460)
+ ("/Users/user/.emacs.d/elpa/smex-20141027.245/smex-autoloads.el" . 490)
+ ("/Users/user/.emacs.d/elpa/monokai-theme-20141111.242/monokai-theme-autoloads.el" . 456)
+ ("/Users/user/.emacs.d/elpa/vkill-20091203.1022/vkill-autoloads.el" . 219)
+ ("/Users/user/.emacs.d/elpa/exec-path-from-shell-20140731.907/exec-path-from-shell-autoloads.el" . 1252))
